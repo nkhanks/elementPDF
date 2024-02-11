@@ -1,0 +1,37 @@
+[{
+  "element": "Image",
+  "value":"",
+  "image_type":"jpg",
+  "scale":1.0,
+  "x" : 166.4,
+  "y": 28.1
+},
+
+{
+"element": "Text",
+"value":"Quote",
+"font_family" : "inter-extrabold",
+"font_size": 16,
+"x" : 177.4,
+"y": 40.8
+},
+
+{
+  "element": "Rectangle",
+  "value":"Test 3",
+  "width": 210.0,
+  "height": 55.5625,
+  "fill": "#ECDFBE",
+  "outline": "#ECDFBE",
+  "thickness": 1.0,
+  "x" : 0,
+  "y": 0
+},{
+  "element": "Paragraph",
+  "value": ["709 Richards Dr, Halfway","House, Midrand, 1685"],
+  "font_size": 12,
+  "x" : 160.6,
+  "y": 74.0
+}
+
+]

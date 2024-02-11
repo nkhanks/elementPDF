@@ -1,47 +1,18 @@
 use std::fs::File;
 use printpdf::*;
 
-pub struct Text {
-    text: String,
-    font_family: IndirectFontRef,
-    font_size : f64,
-    x_axis: f32,
-    y_axis: f32,
+pub struct Element;
 
-}
+impl Element {
+    pub fn new(doc : &PdfDocumentReference, layer : &PdfLayerReference, text: &str, font_size:f32, x_axis: f32, y_axis:f32, font: &str)  {
 
-impl Text {
-    pub fn new(doc : &PdfDocumentReference, text: &str, font_size:f64, x_axis: f32, y_axis:f32, font: &str) -> Self {
+        let new_y_axis =   297.0 - y_axis;
 
-        if(font == "default"){
-            let family =doc.add_builtin_font(BuiltinFont::TimesRoman).unwrap();
-            Text {
-                text: text.parse().unwrap(),
-                font_family :family,
-                font_size,
-                x_axis,
-                y_axis,
-            }
-
-        }else{
-            let path_to_font =  "assets/fonts/".to_owned() + &*font;
-            let family = doc.add_external_font(File::open(path_to_font).unwrap()).unwrap();
-            Text {
-                text: text.parse().unwrap(),
-                font_family :family,
-                font_size,
-                x_axis,
-                y_axis,
-            }
-        }
+        let path_to_font =  "fonts/".to_owned() + &*font+".ttf";
+        let family = doc.add_external_font(File::open(path_to_font).unwrap()).unwrap();
+        layer.use_text(text, font_size.into(), Mm(x_axis.into()), Mm(new_y_axis.into()), &family)
 
     }
-
-
-    pub fn add_text(&self, layer : &PdfLayerReference){
-        layer.use_text(&self.text, self.font_size.into(), Mm(self.x_axis.into()), Mm(self.y_axis.into()), &self.font_family);
-    }
-
 }
 
 

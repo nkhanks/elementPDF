@@ -1,44 +1,15 @@
-<!-- index.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Wasm Example</title>
-    <script>
-        function generatePDF(bytes) {
-            console.log(bytes)
-            // Create a blob from the byte array
-            const blob = new Blob([bytes], { type: 'application/pdf' });
-
-            // Create a URL for the blob
-            const url = URL.createObjectURL(blob);
-
-            // Create a link element
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'document.pdf'; // Set default filename if not provided
-            link.style.display = 'none'; // Hide the link
-
-            // Append the link to the body and trigger the download
-            document.body.appendChild(link);
-            link.click();
-
-            // Clean up
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-
-        }
-    </script>
-    <script type="module">
-         import { default as wasm, gen_pdf } from "./pkg/pdfjs.js"; // Update the path to your Wasm module
+use printpdf::Error;
+use wasm_bindgen::prelude::*;
+mod elements;
 
 
+#[tokio::main]
+async fn main()  {
 
-         wasm().then(async (module) =>  {
-
-            let json = `{
+    let json_str = r##"
+{
     "font_family": "Inter",
-    "url":"http://172.24.80.158:8000",
+    "url":"http://localhost:8000",
     "path":"/fonts/Inter/",
     "elements" : [
        {
@@ -124,11 +95,10 @@
         }
     ]
 }
-`
-            let pdfByte = await gen_pdf(json);
-        });
-    </script>
-</head>
-<body>
-</body>
-</html>
+
+"##;
+
+    elements::gen_pdf(json_str).await;
+
+
+}

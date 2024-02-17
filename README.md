@@ -9,14 +9,6 @@ make sure you install
 ##
 
 `
-<!-- index.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Wasm Example</title>
-    <script type="module">
-         import { default as wasm, gen_pdf } from "./pkg/pdf.js"; // Update the path to your Wasm module
 
          function generatePDF(bytes) {
     // Create a blob from the byte array
@@ -26,11 +18,28 @@ make sure you install
     const url = URL.createObjectURL(blob);
 
     return url;
+    
 }
 
+`
          wasm().then(async (module) =>  {
 
-            let json = `{
+  
+
+            let pdfByte = await gen_pdf(json_here);
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
+
+
+`
+
+# example
+
+{
     "font_family": "Inter",
     "url":"http://localhost:8000",
     "path":"/fonts/Inter/",
@@ -45,15 +54,5 @@ make sure you install
         }
     ]
 }
-`
-            let pdfByte = await gen_pdf(json);
-        });
-    </script>
-</head>
-<body>
-</body>
-</html>
-
-
 `
 

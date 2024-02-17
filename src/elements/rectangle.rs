@@ -1,6 +1,4 @@
-use std::fs::File;
 use printpdf::*;
-use printpdf::lopdf::Outline;
 use printpdf::path::{PaintMode, WindingOrder};
 
 pub struct Element;

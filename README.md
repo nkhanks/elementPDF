@@ -14,24 +14,28 @@ Install Wasm-pack, which simplifies building Wasm modules. You can install it fr
 To serve your web application and Wasm module, you can use Python or PHP's built-in web server. Here are the commands:
 
 ```
+# Python
 python -m http.server
-```
 
-or
-
-```
+# PHP
 php -S localhost:8000
-```
-### use script module 
 
 ```
-  <script type="module"></script>
-```
+
+### Using Script Module in HTML
+
+In your HTML file, include a script module to import the Wasm module:
 
 ```
-  import { default as wasm, gen_pdf } from "./pkg/pdf.js"; // Update the path to your Wasm module
+<script type="module">
+    import { default as wasm, gen_pdf } from "./pkg/pdf.js"; // Update the path to your Wasm module
+</script>
 ```
 
+
+### JavaScript Function to Generate PDF
+
+Define a JavaScript function to generate PDF from the Wasm module's output:
 
 ```
 function generatePDF(bytes) {
@@ -43,14 +47,21 @@ function generatePDF(bytes) {
 }
 ```
 
+### Using Wasm Module in JavaScript
+
+Load the Wasm module and call the `gen_pdf` function to generate PDF based on the provided JSON:
+
 ```
 wasm().then(async (module) =>  {
    let pdfByte = await gen_pdf(json_here);
 });
 ```
 
-# example
-``
+### Example JSON Configuration
+
+Here's an example JSON configuration for generating a PDF:
+
+```
 {
     "font_family": "Inter",
     "url":"http://localhost:8000",
@@ -66,5 +77,24 @@ wasm().then(async (module) =>  {
         }
     ]
 }
-``
+```
+You can replace `json_here` in the JavaScript code with this JSON configuration.
+
+Make sure to adapt the paths and configurations according to your project structure and requirements.
+
+#### Fonts file layout
+
+--/fonts/
+
+------/Inter/
+
+------------/Inter-ExtraBold.tff
+
+------------/Inter-Regular.tff
+
+------------/Inter-Bold.tff
+
+*[Here is font library](https://fonts.google.com/)*.
+
+
 

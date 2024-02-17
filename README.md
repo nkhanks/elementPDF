@@ -3,6 +3,7 @@
 `wasm-pack build --release --target web`
 
 make sure you install
+
 Ensure Rust is installed. You can download and install it from *[Rust](https://www.rust-lang.org/)*.
 
 Install Wasm-pack, which simplifies building Wasm modules. You can install it from *[Wasm](https://rustwasm.github.io/wasm-pack/installer/)*.

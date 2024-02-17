@@ -8,7 +8,7 @@ make sure you install
 
 ##
 
-`
+```
 
          function generatePDF(bytes) {
     // Create a blob from the byte array
@@ -20,8 +20,9 @@ make sure you install
     return url;
     
 }
+```
 
-`
+```
          wasm().then(async (module) =>  {
 
   
@@ -35,10 +36,10 @@ make sure you install
 </html>
 
 
-`
+```
 
 # example
-
+``
 {
     "font_family": "Inter",
     "url":"http://localhost:8000",
@@ -54,5 +55,5 @@ make sure you install
         }
     ]
 }
-`
+``
 

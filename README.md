@@ -1,13 +1,15 @@
-## How to build wasm
+## Building Wasm Module:
 
 `wasm-pack build --release --target web`
 
 make sure you install
-*[Rust](https://www.rust-lang.org/)*.
-*[Wasm](https://rustwasm.github.io/wasm-pack/installer/)*.
+Ensure Rust is installed. You can download and install it from *[Rust](https://www.rust-lang.org/)*.
+Install Wasm-pack, which simplifies building Wasm modules. You can install it from *[Wasm](https://rustwasm.github.io/wasm-pack/installer/)*.
 
 ##
 ## Alway run on web server enviorment 
+
+To serve your web application and Wasm module, you can use Python or PHP's built-in web server. Here are the commands:
 
 ```
 python -m http.server
